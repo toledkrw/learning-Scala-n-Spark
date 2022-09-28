@@ -29,3 +29,19 @@ transformInt(2, x => {val y = x * 2; y * y})
 // Strings have a built-in .toUpperCase method. For example, "foo".toUpperCase gives you back FOO.
 // Write a function that converts a string to upper-case, and use that function of a few test strings.
 // Then, do the same thing using a function literal instead of a separate, named function.
+
+val lambda = (x:String) => x.toUpperCase()
+
+val lista_1 = List("batata", "banana", "beterraba")
+val lista_2 = lista_1.map(lambda)
+
+print(lista_2)
+
+
+
+def to_upper(x: String) : String = {
+  x.toUpperCase()
+}
+
+val batata = "batata"
+val novaBatata = to_upper(batata)
