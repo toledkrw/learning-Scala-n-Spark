@@ -67,3 +67,19 @@ println(archersShip)
 // modula operator, like other languages, is %, which gives you the remainder after division. For example, 9 % 3 = 0
 // because 9 is evenly divisible by 3.) Do this first by iterating through all the items in the list and testing each
 // one as you go. Then, do it again by using a filter function on the list instead.
+val lista_1 = { 1 to 20 toList}
+
+
+var temp_lista = List[Int]()
+for (numero <- lista_1){
+  if(numero % 3 == 0){
+    temp_lista = temp_lista :+ numero
+  }
+}
+val lista_2 = temp_lista
+println(lista_2)
+
+
+val lista_3 = lista_1.filter((x : Int) => {x % 3 == 0})
+println(lista_3)
+
