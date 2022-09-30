@@ -37,6 +37,6 @@ object AverageFriendsByAge_Toledo {
 
     avgFriendsByAge_Pretty.show()
 
-
+    spark.stop()
   }
 }
