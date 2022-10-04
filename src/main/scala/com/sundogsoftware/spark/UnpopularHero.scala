@@ -40,17 +40,20 @@ object UnpopularHero {
       .withColumn("connections", size(split(col("value"), " ")) - 1)
       .groupBy("id").agg(sum("connections").alias("connections"))
 
+
+    val heroesWithMinimumConnections = connections.
+      filter($"connections" === connections.agg(min("connections")).first().get(0))
+
     val heroesConnectionsWithNames =
-      connections.join(names, "id")
+      heroesWithMinimumConnections.join(names, "id")
 
     val unpopularHeroes = heroesConnectionsWithNames.orderBy(asc("connections"), asc("name"))
 
-    println("Top 10 unpopular heroes")
+    println("Top 10 unpopular heroes: ")
     unpopularHeroes.show(10)
 
     val totalUnpopularHeroes =
-    unpopularHeroes.filter($"connections" === unpopularHeroes.select("connections").first().get(0))
-      .count()
+    unpopularHeroes.count()
 
     println(f"The total of unpopular superheroes (with 1 or less connections) is: ${totalUnpopularHeroes}")
     spark.stop()
